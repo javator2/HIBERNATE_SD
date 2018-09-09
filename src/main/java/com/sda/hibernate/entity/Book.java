@@ -14,8 +14,10 @@ public class Book {
     private String isbn;
     @Column(name = "")
     private String author;
-
+    @ManyToOne(cascade = CascadeType.ALL)
     private Category category;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private  Publisher publisher;
 
     public Book(){}
 
@@ -24,6 +26,14 @@ public class Book {
         this.title = title;
         this.isbn = isbn;
         this.author = author;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
     public int getId() {

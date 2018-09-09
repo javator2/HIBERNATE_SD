@@ -2,6 +2,7 @@ package com.sda.hibernate;
 
 import com.sda.hibernate.entity.Book;
 import com.sda.hibernate.entity.Category;
+import com.sda.hibernate.entity.Publisher;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,14 +37,13 @@ public class Main {
         book.setIsbn("3452-2678");
         book.setTitle("Nowe");
 
+
         Book book1 = new Book("nowa ksiazka", "2324-2345", "Jan Brzechwa");
         Book book2 = new Book("Proframowanie", "2324-2356", "Frank Tesla");
+        Book book3 = new Book("Php junior", "isbn" , "John Smieszny");
 
         Category category = new Category("Programowanie");
         Category category1 = new Category("Programowanie JAVA");
-
-
-
 
         Session session = getSesion();
 
@@ -52,6 +52,7 @@ public class Main {
         tx.begin();
         session.save(book);
         session.save(book1);
+        session.save(book3);
         tx.commit();
 
         tx.begin();
@@ -76,12 +77,38 @@ public class Main {
 //        }
 
 
-        Book book3 = session.byId(Book.class).getReference(2);
-        System.out.println(book3);
+//        Book book3 = session.byId(Book.class).getReference(2);
+//        System.out.println(book3);
+//
+//        tx.begin();
+//        session.delete(book3);
+//        tx.commit();
+
+        Book book4 = new Book("test", "test", "test");
+        book4.setCategory(category);
 
         tx.begin();
-        session.delete(book3);
+        session.save(book4);
         tx.commit();
+
+        Publisher publisher = new Publisher("PWN", "ul.Kosciuszki 168","Warszawa");
+        Publisher publisher1 = new Publisher("Nowa Era", "ul.17-eg Stycznia", "Krakow");
+        Book book5 = new Book("JAVA od podstaw", "7679-2442", "Maciej Tchurz");
+        book5.setPublisher(publisher);
+        book1.setPublisher(publisher);
+        book2.setPublisher(publisher1);
+        book3.setPublisher(publisher1);
+        book4.setPublisher(publisher1);
+        book4.setCategory(category1);
+
+        tx.begin();
+        session.save(book1);
+        session.save(book2);
+        session.save(book3);
+        session.save(book4);
+        session.save(book5);
+        tx.commit();
+
 
 
         session.close();

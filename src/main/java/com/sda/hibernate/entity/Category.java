@@ -1,6 +1,7 @@
 package com.sda.hibernate.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Category {
@@ -10,6 +11,9 @@ public class Category {
     private int id;
     @Column(length = 50, nullable = false , unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "category")
+    private Set<Book> bookSet;
 
     public Category(String name) {
         this.name = name;
