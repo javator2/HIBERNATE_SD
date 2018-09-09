@@ -15,6 +15,8 @@ public class Book {
     @Column(name = "")
     private String author;
 
+    private Category category;
+
     public Book(){}
 
 

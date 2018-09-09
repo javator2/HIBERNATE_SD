@@ -61,6 +61,7 @@ public class Main {
         tx.begin();
         session.save(category);
         session.save(category1);
+        tx.commit();
 
         List<Book> bookList =
                 session.createQuery("from " + Book.class.getName()).list();
@@ -68,11 +69,19 @@ public class Main {
             System.out.println(b.getAuthor() + " " + b.getTitle());
         }
 
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaBuilder<Book> bookCriteriaBuilder = builder.createQuery(Book.class).;
-        for (Book b : bookCriteriaBuilder){
-            System.out.println(b.getAuthor());
-        }
+//        CriteriaBuilder builder = session.getCriteriaBuilder();
+//        CriteriaBuilder<Book> bookCriteriaBuilder = builder.createQuery(Book.class).;
+//        for (Book b : bookCriteriaBuilder){
+//            System.out.println(b.getAuthor());
+//        }
+
+
+        Book book3 = session.byId(Book.class).getReference(2);
+        System.out.println(book3);
+
+        tx.begin();
+        session.delete(book3);
+        tx.commit();
 
 
         session.close();
