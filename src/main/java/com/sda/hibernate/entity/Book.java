@@ -1,6 +1,7 @@
 package com.sda.hibernate.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Book {
@@ -12,20 +13,21 @@ public class Book {
     private String title;
     @Column(name = "")
     private String isbn;
-    @Column(name = "")
-    private String author;
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Category category;
     @ManyToOne(cascade = CascadeType.ALL)
-    private  Publisher publisher;
+    private Publisher publisher;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Author> authors;
 
-    public Book(){}
+    public Book() {
+    }
 
 
-    public Book(String title, String isbn, String author) {
+    public Book(String title, String isbn) {
         this.title = title;
         this.isbn = isbn;
-        this.author = author;
     }
 
     public void setCategory(Category category) {
@@ -34,6 +36,14 @@ public class Book {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
     }
 
     public int getId() {
@@ -60,11 +70,4 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 }

@@ -30,6 +30,7 @@
         <mapping class="com.sda.hibernate.entity.Book"></mapping>
         <mapping class="com.sda.hibernate.entity.Category"></mapping>
         <mapping class="com.sda.hibernate.entity.Publisher"></mapping>
+        <mapping class="com.sda.hibernate.entity.Author"></mapping>
 
 
     </session-factory>

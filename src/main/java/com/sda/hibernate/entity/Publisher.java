@@ -12,17 +12,20 @@ public class Publisher {
     @Column
     private String name;
     @Column
-    private String adress;
+    private String address;
     @Column
     private String city;
 
     @OneToMany(mappedBy = "publisher")
     private Set<Book> bookSet;
 
-    public Publisher(String name, String adress, String city) {
+    public Publisher(String name, String address, String city) {
         this.name = name;
-        this.adress = adress;
+        this.address = address;
         this.city = city;
+    }
+
+    public Publisher() {
     }
 
     public int getId() {
@@ -41,12 +44,12 @@ public class Publisher {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String adress) {
+        this.address = adress;
     }
 
     public String getCity() {

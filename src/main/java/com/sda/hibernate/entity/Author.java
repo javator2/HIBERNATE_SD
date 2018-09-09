@@ -1,25 +1,32 @@
 package com.sda.hibernate.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Category {
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(length = 50, nullable = false , unique = true)
+    @Column
     private String name;
-
-    @OneToMany(mappedBy = "category")
+    @Column
+    private String lastname;
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> bookSet;
 
-    public Category(String name) {
+    public Author(String name, String lastname) {
         this.name = name;
+        this.lastname = lastname;
     }
 
-    public Category() {
+    public Author() {
+    }
+
+    public void setBookSet(Set<Book> bookSet) {
+        this.bookSet = bookSet;
     }
 
     public int getId() {
@@ -36,5 +43,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 }
