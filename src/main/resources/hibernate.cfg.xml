@@ -25,8 +25,10 @@
         <property name="hibernate.show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="generate_statistics">true</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
         <mapping class="com.sda.hibernate.entity.Book"></mapping>
+
 
     </session-factory>
 </hibernate-configuration>
