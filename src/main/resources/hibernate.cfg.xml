@@ -25,7 +25,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="generate_statistics">true</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
         <mapping class="com.sda.hibernate.entity.Book"></mapping>
         <mapping class="com.sda.hibernate.entity.Category"></mapping>
